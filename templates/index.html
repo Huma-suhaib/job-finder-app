@@ -1,0 +1,35 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI-Based Job Finder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <script src="{{ url_for('static', filename='animations.js') }}" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1 class="animated-title">🎯 Smart Job Finder</h1>
+
+    <!-- Note: action="/" and method="post" -->
+    <form method="post" action="/" enctype="multipart/form-data" class="upload-form">
+      <div class="upload-section">
+        <p>Upload your Resume (PDF/DOCX):</p>
+        <input type="file" id="resumeInput" accept=".pdf,.doc,.docx" />
+        <button onclick="findJobs()">
+          🔍 Find Jobs
+        </button>
+      </div>      
+    </form>
+
+    {% if jobs %}
+      <h2 class="results-title">Recommended Jobs</h2>
+      <ol class="job-list">
+        {% for link in jobs %}
+          <li><a href="{{ link }}" target="_blank">{{ link.split('//')[-1][:50] }}...</a></li>
+        {% endfor %}
+      </ol>      
+    {% endif %}
+  </div>
+</body>
+</html>
