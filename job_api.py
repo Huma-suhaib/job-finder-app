@@ -1,12 +1,13 @@
 import requests
+import os
 
 def find_jobs_api(skill):
     url = "https://jsearch.p.rapidapi.com/search"
 
-    querystring = {"query": skill, "page": "1", "num_pages": "3"}
+    querystring = {"query": skill, "page": "1", "num_pages": "1"}
 
     headers = {
-        "X-RapidAPI-Key": "44c80b56fcmshaa7b755a16e639ep13b2f0jsncecee94b90ba",  #Put your real key here
+        "X-RapidAPI-Key": os.getenv("RAPIDAPI_KEY"),  #Put your real key here
         "X-RapidAPI-Host": "jsearch.p.rapidapi.com"
     }
 
