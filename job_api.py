@@ -9,14 +9,15 @@ def find_jobs_api(skill):
     headers = {
         "X-RapidAPI-Key": os.getenv("RAPIDAPI_KEY"),  #Put your real key here
         "X-RapidAPI-Host": "jsearch.p.rapidapi.com"
-    }
+}
+
 
     response = requests.get(url, headers=headers, params=querystring)
 
     if response.status_code == 200:
         data = response.json()
         job_links = []
-        for job in data["data"][:10]:  # limit to 3 jobs per skill
+        for job in data["data"][:3]:  # limit to 3 jobs per skill
             title = job.get("job_title", "No title")
             link = job.get("job_apply_link") or job.get("job_google_link", "#")
             job_links.append((title, link))
